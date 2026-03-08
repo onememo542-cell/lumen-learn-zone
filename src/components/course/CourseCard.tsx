@@ -29,7 +29,7 @@ const CourseCard = ({ course }: { course: Course }) => (
           {course.level}
         </Badge>
       </div>
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5">
         <p className="mb-1 text-xs font-medium text-primary">{course.category}</p>
         <h3 className="mb-2 line-clamp-2 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary">
           {course.title}
