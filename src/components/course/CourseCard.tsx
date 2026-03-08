@@ -11,7 +11,7 @@ const CourseCard = ({ course }: { course: Course }) => (
   >
     <Link
       to={`/course/${course.id}`}
-      className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow hover:shadow-card-hover"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow hover:shadow-card-hover"
     >
       <div className="relative aspect-video overflow-hidden">
         <img
