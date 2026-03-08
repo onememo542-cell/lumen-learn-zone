@@ -11,7 +11,7 @@ const CourseCard = ({ course }: { course: Course }) => (
   >
     <Link
       to={`/course/${course.id}`}
-      className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow hover:shadow-card-hover"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow hover:shadow-card-hover"
     >
       <div className="relative aspect-video overflow-hidden">
         <img
@@ -29,7 +29,7 @@ const CourseCard = ({ course }: { course: Course }) => (
           {course.level}
         </Badge>
       </div>
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5">
         <p className="mb-1 text-xs font-medium text-primary">{course.category}</p>
         <h3 className="mb-2 line-clamp-2 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary">
           {course.title}
@@ -60,7 +60,7 @@ const CourseCard = ({ course }: { course: Course }) => (
             {course.lessonsCount}
           </span>
         </div>
-        <div className="mt-4 border-t border-border pt-3">
+        <div className="mt-auto border-t border-border pt-3">
           <span className="text-lg font-bold text-foreground">
             {course.isFree ? "Free" : `$${course.price}`}
           </span>

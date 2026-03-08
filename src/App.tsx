@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const Courses = lazy(() => import("./pages/Courses"));
+const Categories = lazy(() => import("./pages/Categories"));
+const Instructors = lazy(() => import("./pages/Instructors"));
 const CourseDetails = lazy(() => import("./pages/CourseDetails"));
 const InstructorProfile = lazy(() => import("./pages/InstructorProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -32,6 +34,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/instructors" element={<Instructors />} />
             <Route path="/course/:id" element={<CourseDetails />} />
             <Route path="/course/:id/lesson" element={<LessonPlayer />} />
             <Route path="/instructor/:id" element={<InstructorProfile />} />
