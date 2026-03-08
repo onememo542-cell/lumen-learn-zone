@@ -7,7 +7,7 @@ const InstructorCard = ({ instructor }: { instructor: Instructor }) => (
   <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
     <Link
       to={`/instructor/${instructor.id}`}
-      className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center shadow-card transition-shadow hover:shadow-card-hover"
+      className="flex h-full flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center shadow-card transition-shadow hover:shadow-card-hover"
     >
       <img
         src={instructor.avatar}

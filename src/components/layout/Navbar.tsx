@@ -44,9 +44,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
-            <Search className="h-5 w-5" />
-          </Button>
+          <SearchDropdown />
           <Link to="/dashboard">
             <Button variant="ghost" className="text-muted-foreground">Dashboard</Button>
           </Link>

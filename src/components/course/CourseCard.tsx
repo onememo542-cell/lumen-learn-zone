@@ -60,7 +60,7 @@ const CourseCard = ({ course }: { course: Course }) => (
             {course.lessonsCount}
           </span>
         </div>
-        <div className="mt-4 border-t border-border pt-3">
+        <div className="mt-auto border-t border-border pt-3">
           <span className="text-lg font-bold text-foreground">
             {course.isFree ? "Free" : `$${course.price}`}
           </span>
