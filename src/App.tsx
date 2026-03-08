@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const Courses = lazy(() => import("./pages/Courses"));
+const Categories = lazy(() => import("./pages/Categories"));
+const Instructors = lazy(() => import("./pages/Instructors"));
 const CourseDetails = lazy(() => import("./pages/CourseDetails"));
 const InstructorProfile = lazy(() => import("./pages/InstructorProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
