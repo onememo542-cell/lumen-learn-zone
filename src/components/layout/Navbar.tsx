@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search, GraduationCap } from "lucide-react";
+import { Menu, X, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SearchDropdown from "./SearchDropdown";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Courses", path: "/courses" },
-  { label: "Categories", path: "/courses" },
-  { label: "Instructors", path: "/courses" },
+  { label: "Categories", path: "/categories" },
+  { label: "Instructors", path: "/instructors" },
 ];
 
 const Navbar = () => {
