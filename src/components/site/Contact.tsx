@@ -79,7 +79,7 @@ export function Contact() {
                     </p>
                   </li>
                 ))}
-              </ul>
+              </Reveal>
             </div>
 
             <dl className="relative mt-10 grid sm:mt-12 gap-8 border-t border-primary-foreground/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
