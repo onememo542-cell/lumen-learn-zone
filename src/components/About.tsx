@@ -1,6 +1,7 @@
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { principles } from "@/data/expertise";
+import portrait from "@/assets/portrait-cutout.webp";
 
 export function About() {
   return (
