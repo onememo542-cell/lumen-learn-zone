@@ -178,10 +178,18 @@ export function Projects() {
                           initial={{ scale: 0.94, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                          className="mt-4 aspect-square w-full overflow-hidden rounded-md"
+                          className="relative mt-4 aspect-square w-full overflow-hidden rounded-md"
                           style={{ background: current.accent }}
                         >
-                          <div className="grid-lines h-full w-full rounded-md opacity-30" />
+                          <img
+                            src={projectImages[current.id] ?? projectImages["1"]}
+                            alt={`${current.title} interface preview`}
+                            loading="lazy"
+                            width={640}
+                            height={640}
+                            className="h-full w-full object-cover opacity-90"
+                          />
+                          <div className="grid-lines pointer-events-none absolute inset-0 rounded-md opacity-25" />
                         </motion.div>
 
                         <div className="mt-4 flex items-center gap-1.5 text-[9px] text-black/40">
