@@ -34,6 +34,17 @@ export function About() {
 
           <Reveal delay={0.1}>
             <div className="rounded-2xl hairline bg-surface/35 p-7 backdrop-blur-sm">
+              <div className="relative mb-7 overflow-hidden rounded-xl hairline bg-brand/5">
+                <img
+                  src={portrait}
+                  alt="Portrait of Mostafa Samir, Senior Full Stack Engineer"
+                  loading="lazy"
+                  width={640}
+                  height={720}
+                  className="aspect-[4/5] w-full object-cover object-top"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+              </div>
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full hairline bg-brand/10 font-mono text-sm text-brand-soft">
                   MS
@@ -43,6 +54,7 @@ export function About() {
                   <div className="text-sm text-muted-foreground">Banking &amp; Fintech Systems</div>
                 </div>
               </div>
+
 
               <div className="mono-label mt-8">Principles</div>
               <div className="mt-4 grid gap-px overflow-hidden rounded-xl hairline sm:grid-cols-2">
