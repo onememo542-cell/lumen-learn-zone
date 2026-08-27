@@ -72,35 +72,29 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const title = "Mostafa Samir — Full Stack Engineer for Real Estate Platforms";
-const description =
-  "Senior full stack engineer building property listing portals, multi-tenant brokerage systems and real-time property dashboards with .NET 8, Angular and Next.js.";
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title },
-      { name: "description", content: description },
-      { name: "author", content: "Mostafa Samir" },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
+      { title: "Lovable App" },
+      { name: "description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
+      { name: "author", content: "Lovable" },
+      { property: "og:title", content: "Lovable App" },
+      { property: "og:description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e48d2db8-502c-4162-a250-6c6a1f11e61e/id-preview-d0ce9239--f1007057-ee38-449f-8aa9-544b472a5bf0.lovable.app-1781081962063.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e48d2db8-502c-4162-a250-6c6a1f11e61e/id-preview-d0ce9239--f1007057-ee38-449f-8aa9-544b472a5bf0.lovable.app-1781081962063.png" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
@@ -109,14 +103,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const themeInitScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
-
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         {children}
@@ -126,9 +117,24 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    const onScroll = () => {
+      document.documentElement.classList.add("is-scrolling");
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        document.documentElement.classList.remove("is-scrolling");
+      }, 600);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
