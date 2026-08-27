@@ -12,7 +12,19 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import marketplaceImg from "@/assets/project-marketplace.jpg";
+import realtimeImg from "@/assets/project-realtime.jpg";
+import multitenantImg from "@/assets/project-multitenant.jpg";
+import nextjsImg from "@/assets/project-nextjs.jpg";
+
 const icons: LucideIcon[] = [Landmark, CreditCard, LineChart, Banknote, Wallet];
+
+const projectImages: Record<string, string> = {
+  "1": marketplaceImg,
+  "2": realtimeImg,
+  "3": multitenantImg,
+  "4": nextjsImg,
+};
 
 export function Projects() {
   const [active, setActive] = useState(0);
