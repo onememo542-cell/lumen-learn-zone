@@ -12,8 +12,8 @@ export function About() {
           title={<>Engineering for trust and scale.</>}
         />
 
-        <div className="grid gap-12 lg:grid-cols-[1.25fr_1fr]">
-          <Reveal className="space-y-5 text-[15px] leading-relaxed text-muted-foreground md:text-base">
+        <div className="grid items-stretch gap-12 lg:grid-cols-[1.25fr_1fr]">
+          <Reveal className="flex h-full flex-col justify-center space-y-5 text-[15px] leading-relaxed text-muted-foreground md:text-base">
             <p>
               I&apos;m Mostafa Samir, a Senior Full Stack Engineer with 4+ years building
               high-performance microservices and modern web architectures. My focus is systems that
@@ -32,8 +32,8 @@ export function About() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="rounded-2xl hairline bg-surface/35 p-7 backdrop-blur-sm">
+          <Reveal delay={0.1} className="h-full">
+            <div className="flex h-full flex-col rounded-2xl hairline bg-surface/35 p-7 backdrop-blur-sm">
               <div className="relative mb-7 overflow-hidden rounded-xl hairline bg-brand/5">
                 <img
                   src={portrait}
@@ -55,7 +55,6 @@ export function About() {
                 </div>
               </div>
 
-
               <div className="mono-label mt-8">Principles</div>
               <div className="mt-4 grid gap-px overflow-hidden rounded-xl hairline sm:grid-cols-2">
                 {principles.map((p) => (
@@ -65,7 +64,7 @@ export function About() {
                 ))}
               </div>
 
-              <div className="mt-8 space-y-3 border-t border-border pt-6 text-sm text-muted-foreground">
+              <div className="mt-auto space-y-3 border-t border-border pt-6 text-sm text-muted-foreground">
                 <div className="flex justify-between">
                   <span>Based in</span>
                   <span className="text-foreground">Tanta, Egypt · Remote</span>
