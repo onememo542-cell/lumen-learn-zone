@@ -1,12 +1,12 @@
 # Delightful Finance Hub
 
-clone https://github.com/carcoo453-sudo33/delightful-finance-hub to focus with get styles from have now very focus with nav and side to be all need working very will look at toggle mode and be very responsive to clean old files have and be very will from new have
+clone this https://github.com/carcoo453-sudo33/delightful-finance-hub.git when be more matching and have all need and clean from old have matching have this https://www.behance.net/gallery/238509139/Finance-Dashboard-UIUX-Design?tracking_source=search_projects|dashboard+payment+ui+designing&l=12
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/22bece84-d31a-460a-8da1-656fdeb074db).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/3c55a166-a9ed-4c7d-875e-4bd5577de702).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
