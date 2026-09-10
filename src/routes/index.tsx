@@ -1,24 +1,258 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Bike, Clock, MapPin, ShieldCheck, Star, Wrench } from "lucide-react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { useI18n } from "@/i18n";
+import { demoProviders } from "@/data/demo";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "BikeFix — Trusted bike mechanics near you" },
+      {
+        name: "description",
+        content:
+          "Book a verified bike mechanic near you, compare offers, and track your repair from request to ride-ready.",
+      },
+      { property: "og:title", content: "BikeFix — Trusted bike mechanics near you" },
+      {
+        property: "og:description",
+        content: "Mobile bike repair, workshop service, and pickup & return — book in minutes.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  const { t, pick, lang } = useI18n();
+
+  const services = [
+    {
+      icon: Wrench,
+      title: pick("صيانة متنقلة", "Mobile service"),
+      body: pick(
+        "الفني يجيلك في مكانك ويصلّح العجلة قدامك.",
+        "A mechanic comes to you and fixes your bike on the spot.",
+      ),
+    },
+    {
+      icon: Bike,
+      title: pick("صيانة في الورشة", "Workshop service"),
+      body: pick(
+        "ورش معتمدة للأعطال الكبيرة والصيانة الشاملة.",
+        "Certified workshops for major repairs and full tune-ups.",
+      ),
+    },
+    {
+      icon: MapPin,
+      title: pick("استلام وتسليم", "Pickup & return"),
+      body: pick(
+        "نستلم العجلة من بيتك ونرجعها جاهزة للركوب.",
+        "We collect your bike and return it ride-ready.",
+      ),
+    },
+  ];
+
+  const steps = [
+    pick("اوصف مشكلة عجلتك في دقيقة.", "Describe your bike problem in a minute."),
+    pick("استقبل عروض من فنيين قريبين منك.", "Receive offers from nearby mechanics."),
+    pick("اختار العرض المناسب واحجز.", "Pick the right offer and book."),
+    pick("تابع الإصلاح لحد ما العجلة تجهز.", "Track the repair until your bike is ready."),
+  ];
+
+  const faqs = [
+    {
+      q: pick("إزاي بتختاروا الفنيين؟", "How are mechanics vetted?"),
+      a: pick(
+        "بنتحقق من الخبرة والتقييمات ومعدل إنهاء الشغل قبل تفعيل أي فني.",
+        "We verify experience, ratings, and completion rate before activating any mechanic.",
+      ),
+    },
+    {
+      q: pick("الأسعار ثابتة؟", "Are prices fixed?"),
+      a: pick(
+        "الفني بيبعت عرض سعر واضح للمصنعية والقطع، وانت اللي بتوافق.",
+        "Each mechanic sends a clear quote for labour and parts, and you approve it.",
+      ),
+    },
+    {
+      q: pick("في ضمان على الصيانة؟", "Is there a warranty?"),
+      a: pick(
+        "أغلب الفنيين بيقدّموا ضمان من 7 لـ 14 يوم على المصنعية.",
+        "Most mechanics offer a 7 to 14 day warranty on labour.",
+      ),
+    },
+  ];
+
+  const mechanics = demoProviders.slice(0, 6);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div id="top" className="min-h-screen bg-background font-sans">
+      <SiteHeader />
+
+      <main>
+        <section className="border-b border-border bg-surface">
+          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:py-20 lg:grid-cols-2 lg:items-center">
+            <div>
+              <Badge variant="secondary" className="mb-4">
+                {t("demoData")}
+              </Badge>
+              <h1 className="text-3xl font-bold leading-tight text-foreground sm:text-5xl">
+                {t("heroTitle")}
+              </h1>
+              <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
+                {t("heroSub")}
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3" id="request">
+                <Button size="lg" asChild>
+                  <a href="#mechanics">{t("fixMyBike")}</a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="#how">{t("workAsMechanic")}</a>
+                </Button>
+              </div>
+              <dl className="mt-9 grid grid-cols-3 gap-4 text-center">
+                {[
+                  { k: "1,200+", v: pick("صيانة مكتملة", "Repairs done") },
+                  { k: "4.8★", v: pick("متوسط التقييم", "Average rating") },
+                  { k: "< 15", v: pick("دقيقة للرد", "Minutes to reply") },
+                ].map((s) => (
+                  <div key={s.k} className="rounded-xl bg-surface-muted p-4">
+                    <dt className="text-xl font-bold text-foreground sm:text-2xl">{s.k}</dt>
+                    <dd className="mt-1 text-xs text-muted-foreground">{s.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-surface-muted p-6">
+              <p className="text-sm font-semibold text-foreground">
+                {pick("أقرب فنيين متاحين دلوقتي", "Mechanics available right now")}
+              </p>
+              <div className="mt-4 space-y-3">
+                {demoProviders.slice(0, 3).map((p) => (
+                  <div
+                    key={p.id}
+                    className="flex items-center justify-between gap-3 rounded-xl bg-surface p-4"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate font-medium text-foreground">
+                        {lang === "ar" ? p.name : p.nameEn}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {p.distanceKm} km · {p.responseMinutes} min
+                      </p>
+                    </div>
+                    <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-foreground">
+                      <Star className="h-4 w-4 text-warning" aria-hidden /> {p.rating}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-14 sm:py-20">
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">{t("services")}</h2>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => (
+              <Card key={s.title} className="h-full">
+                <CardContent className="flex h-full flex-col gap-3 p-6">
+                  <s.icon className="h-8 w-8 text-primary" aria-hidden />
+                  <h3 className="text-lg font-semibold text-foreground">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground">{s.body}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="how" className="scroll-mt-20 border-y border-border bg-surface">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">{t("howItWorks")}</h2>
+            <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step, i) => (
+                <li key={step} className="rounded-xl bg-surface-muted p-5">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                    {i + 1}
+                  </span>
+                  <p className="mt-3 text-sm text-foreground">{step}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section id="mechanics" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-14 sm:py-20">
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">{t("findMechanic")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {mechanics.length} {t("providersFound")}
+          </p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {mechanics.map((p) => (
+              <Card key={p.id} className="h-full">
+                <CardContent className="flex h-full flex-col gap-3 p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-semibold text-foreground">
+                      {lang === "ar" ? p.name : p.nameEn}
+                    </h3>
+                    {p.verified && (
+                      <ShieldCheck className="h-5 w-5 shrink-0 text-success" aria-hidden />
+                    )}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {p.experienceYears} {pick("سنة خبرة", "years experience")} ·{" "}
+                    {p.completedJobs} {pick("مهمة", "jobs")}
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-surface-muted px-2.5 py-1">
+                      <Star className="h-3.5 w-3.5 text-warning" aria-hidden /> {p.rating} (
+                      {p.reviewCount})
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-surface-muted px-2.5 py-1">
+                      <Clock className="h-3.5 w-3.5" aria-hidden /> {p.responseMinutes} min
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-surface-muted px-2.5 py-1">
+                      <MapPin className="h-3.5 w-3.5" aria-hidden /> {p.distanceKm} km
+                    </span>
+                  </div>
+                  <p className="mt-auto pt-2 text-sm font-medium text-foreground">
+                    {pick("رسوم الانتقال", "Travel fee")}: {p.travelFeeEgp} EGP
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="faq" className="scroll-mt-20 border-t border-border bg-surface">
+          <div className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">{t("faq")}</h2>
+            <Accordion type="single" collapsible className="mt-6">
+              {faqs.map((f) => (
+                <AccordionItem key={f.q} value={f.q}>
+                  <AccordionTrigger className="text-start">{f.q}</AccordionTrigger>
+                  <AccordionContent>{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
     </div>
   );
 }
